@@ -309,7 +309,7 @@ export default function ProductsPage() {
 
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
           gap: "20px",
         }}>
           {products.map((product) => (
@@ -386,6 +386,7 @@ export default function ProductsPage() {
             background: "rgba(0,0,0,0.7)",
             backdropFilter: "blur(8px)",
             display: "flex",
+            flexWrap: "wrap",
             justifyContent: "center",
             alignItems: "center",
             zIndex: 9999,
