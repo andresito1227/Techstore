@@ -364,6 +364,7 @@ export default function ProductsPage() {
                       background: "white",
                       padding: "6px",
                       borderRadius: "10px",
+                      flexShrink: 0,
                     }}
                   />
                 </div>
@@ -379,62 +380,92 @@ export default function ProductsPage() {
           onClick={() => setSelectedProduct(null)}
           style={{
             position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "rgba(0,0,0,0.7)",
+            inset: 0,
+            background: "rgba(0,0,0,0.75)",
             backdropFilter: "blur(8px)",
             display: "flex",
-            flexWrap: "wrap",
             justifyContent: "center",
             alignItems: "center",
+            padding: "20px",
             zIndex: 9999,
           }}
         >
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              width: "900px",
+              width: "100%",
+              maxWidth: "950px",
+              maxHeight: "90vh",
+              overflowY: "auto",
               background: "#111",
-              borderRadius: "20px",
-              padding: "30px",
+              borderRadius: "24px",
+              padding: "25px",
               display: "flex",
-              gap: "30px",
+              flexWrap: "wrap",
+              gap: "25px",
               color: "white",
+              boxShadow: "0 0 30px rgba(0,0,0,0.5)",
             }}
           >
-            <img
-              src={selectedProduct.image}
-              alt={selectedProduct.name}
-              style={{
-                width: "350px",
-                height: "350px",
-                objectFit: "cover",
-                borderRadius: "20px",
-              }}
-            />
 
-            <div style={{ flex: 1 }}>
-              <h1 style={{ fontSize: "40px" }}>
+            {/* IMAGEN */}
+            <div style={{
+              flex: "1 1 320px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}>
+              <img
+                src={selectedProduct.image}
+                alt={selectedProduct.name}
+                style={{
+                  width: "100%",
+                  maxWidth: "380px",
+                  borderRadius: "20px",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+
+            {/* INFO */}
+            <div style={{
+              flex: "1 1 320px",
+              minWidth: "280px",
+            }}>
+
+              <h1 style={{
+                fontSize: "clamp(28px, 5vw, 42px)",
+                marginBottom: "10px",
+              }}>
                 {selectedProduct.name}
               </h1>
 
               <p style={{
                 color: "#3b82f6",
-                fontSize: "28px",
+                fontSize: "clamp(22px, 4vw, 30px)",
                 fontWeight: "bold",
                 marginBottom: "20px",
               }}>
                 {selectedProduct.price}
               </p>
 
-              <p style={{ color: "#aaa", marginBottom: "20px" }}>
+              <p style={{
+                color: "#aaa",
+                marginBottom: "25px",
+                lineHeight: 1.6,
+              }}>
                 {selectedProduct.description}
               </p>
 
-              {/* ESPECIFICACIONES RESTAURADAS */}
-              <div style={{ marginBottom: "20px", color: "#ddd" }}>
+              {/* ESPECIFICACIONES */}
+              <div style={{
+                marginBottom: "25px",
+                color: "#ddd",
+                background: "#181818",
+                padding: "15px",
+                borderRadius: "14px",
+                lineHeight: 1.8,
+              }}>
                 <p><strong>Color:</strong> {selectedProduct.color}</p>
                 <p><strong>RAM:</strong> {selectedProduct.ram}</p>
                 <p><strong>Storage:</strong> {selectedProduct.storage}</p>
@@ -443,33 +474,43 @@ export default function ProductsPage() {
                 <p><strong>Pantalla:</strong> {selectedProduct.screen}</p>
               </div>
 
-              {/* QR RESTAURADO */}
-              <img
-                src={selectedProduct.qr}
-                alt="QR"
-                style={{
-                  width: "140px",
-                  background: "white",
-                  padding: "10px",
-                  borderRadius: "12px",
-                  marginBottom: "20px",
-                }}
-              />
+              {/* QR + BOTON */}
+              <div style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "20px",
+                alignItems: "center",
+              }}>
 
-              <button
-                onClick={() => handleAddToCart(selectedProduct)}
-                style={{
-                  padding: "14px 20px",
-                  background: "#3b82f6",
-                  border: "none",
-                  borderRadius: "12px",
-                  color: "white",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                }}
-              >
-                Agregar al carrito
-              </button>
+                <img
+                  src={selectedProduct.qr}
+                  alt="QR"
+                  style={{
+                    width: "140px",
+                    background: "white",
+                    padding: "10px",
+                    borderRadius: "14px",
+                  }}
+                />
+
+                <button
+                  onClick={() => handleAddToCart(selectedProduct)}
+                  style={{
+                    padding: "14px 22px",
+                    background: "#3b82f6",
+                    border: "none",
+                    borderRadius: "12px",
+                    color: "white",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    transition: "0.2s",
+                  }}
+                >
+                  Agregar al carrito
+                </button>
+
+              </div>
             </div>
           </div>
         </div>
